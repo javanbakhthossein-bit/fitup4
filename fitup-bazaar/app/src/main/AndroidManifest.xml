@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- اپ یک WebView از سایت فیتاپ است؛ فقط اینترنت لازم است (حداقل دسترسی — قانون حریم خصوصی بازار) -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!-- نوتیف سیستم اندروید ۱۳+ (runtime request در MainActivity) -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <!-- OTP خودکار ورود: خواندن «فقط» پیامک کد ۴ رقمی فیتاپ — با runtime permission
+         و دیالوگ توضیح فارسی درخواست می‌شود (الگوی استاندارد اپ‌های بانکی ایرانی در بازار).
+         هیچ پیامکی ذخیره/ارسال نمی‌شود؛ receiver فقط در foreground فعال است. -->
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
+
+    <!-- دوربین/میکروفون وب: مجوزها «در زمان استفاده» گرفته می‌شوند — نه در استارتاپ.
+         WebChromeClient.onPermissionRequest دقیقاً وقتی اجرا می‌شود که سایت ضبط صدا
+         (چت صوتی/ویس) یا ضبط ویدیو (آنالیز ویدیویی تمرین/بدن) بخواهد؛ کاربر ابتدا
+         دیالوگ فارسی اجازه را می‌بیند و بعد دیالوگ سیستمی اندروید. هیچ چیزی خارج
+         از آن لحظه ضبط/ذخیره نمی‌شود (قانون حریم خصوصی بازار). -->
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+
+    <!-- اندروید ۱۱+ : برای bind شدن به سرویس پرداخت بازار، پکیج بازار باید visible باشد -->
+    <queries>
+        <package android:name="com.farsitel.bazaar" />
+        <intent>
+            <action android:name="ir.cafebazaar.pardakht.InAppBillingService.BIND" />
+        </intent>
+    </queries>
+
+    <application
+        android:allowBackup="false"
+        android:fullBackupContent="false"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.FitUp"
+        android:usesCleartextTraffic="false">
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:windowSoftInputMode="adjustResize">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+</manifest>

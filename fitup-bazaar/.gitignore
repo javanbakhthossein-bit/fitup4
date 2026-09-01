@@ -1,0 +1,7 @@
+# بیلدها و کش gradle — در گیت نباشند
+.gradle/
+build/
+app/build/
+local.properties
+*.iml
+.idea/

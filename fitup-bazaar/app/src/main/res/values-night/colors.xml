@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- حالت تیره — اسپلش/خطا پس‌زمینه تیره با متن روشن -->
+    <color name="splash_bg">#0f172a</color>
+    <color name="splash_title">#f1f5f9</color>
+</resources>
